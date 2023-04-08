@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  "engines":{
-    "node":">=14.20.1"
+  "engines": {
+    "node": ">=14.20.1"
   },
   "scripts": {
-    "start":"node serer.js",
-    "dev":"nodemon server.js"
+    "start": "node serer.js",
+    "dev": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +21,6 @@
     "express": "^4.18.2",
     "json": "^11.0.0",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.3",
-    "parser": "^0.1.4"
+    "mongoose": "^7.0.3"
   }
 }
