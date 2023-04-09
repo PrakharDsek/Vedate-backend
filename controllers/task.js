@@ -1,21 +1,28 @@
 import { Task } from "../models/taskSchema.js";
 
 export const createTask = async (req, res) => {
-  const { title, disc } = req.body;
+ try {
+   const { title, disc } = req.body;
 
-  if ((title, disc)) {
-    const newTask = { title: title, disc: disc, user: req.user };
-    const task = await Task.create(newTask);
-    res.status(201).json({
-      success: true,
-      message: `creted task of user with id ${req.user._id}`,
-    });
-  } else {
-    res.status(400).json({
-      success: false,
-      message: "title or discripton is not provided",
-    });
-  }
+   if ((title, disc)) {
+     const newTask = { title: title, disc: disc, user: req.user };
+     const task = await Task.create(newTask);
+     res.status(201).json({
+       success: true,
+       message: `creted task of user with id ${req.user._id}`,
+     });
+   } else {
+     res.status(400).json({
+       success: false,
+       message: "title or discripton is not provided",
+     });
+   }
+ } catch (error) {
+   res.status(500).json({
+    success: false ,
+    message:reportError.message
+   })
+ }
 };
 
 

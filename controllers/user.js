@@ -10,7 +10,7 @@ const Login = async (req, res) => {
         if (!User) {
           res.status(400).json({
             success: false,
-            message: "Invalid password or email",
+            message: "Wrong Creditential",
           });
         } else {
           const comparedPass = await bcrypt.compare(password, user.password);
@@ -30,14 +30,14 @@ const Login = async (req, res) => {
           } else {
             res.status(400).json({
               success: false,
-              message: "Email or password is wrong",
+              message: "EWrong Creditential",
             });
           }
         }
     } catch (error) {
       res.status(400).json({
         success: false,
-        message: "Email or password is not provided"
+        message: "Wrong Creditentials"
       })
       console.log(error.message)
     }
@@ -49,6 +49,7 @@ const Createuser = async (req, res) => {
     const user = await User.findOne({ email });
     if (user) {
       res.status(409).json({
+        success:false,
         message: "User already exists",
       });
     } else {
@@ -62,14 +63,15 @@ const Createuser = async (req, res) => {
         sameSite:"none",
         secure:true,
       }).json({
+        success: true,
         message: "User created successfully",
-        userId: createdUser._id,
+        userdata: createdUser,
       });
     }
   } catch (error) { 
     res.status(400).json({
       success: false,
-      message: "Email or password is not provided",
+      message: "Email ,Name or password is not provided",
     });
   }
 };
