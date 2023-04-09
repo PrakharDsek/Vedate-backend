@@ -26,7 +26,7 @@ export const createTask = async (req, res) => {
 };
 
 
-export const getMyTask = async (req, res, next) => {
+export const getTasks = async (req, res) => {
   try {
     const userid = req.user._id;
 
@@ -37,7 +37,10 @@ export const getMyTask = async (req, res, next) => {
       tasks,
     });
   } catch (error) {
-    next(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
 
