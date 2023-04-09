@@ -26,18 +26,20 @@ export const createTask = async (req, res) => {
 };
 
 
-export const getTasks=async(req ,res) => {
-  const data=await Task.find(req.use)
-  // console.log(data.map((i) => (i.title)));
-  if (data) {
-    res.status(201).json({
-      success: true,
-      message: "Successfully got the data of user",
-      data:data
-    })
-  }
+export const getMyTask = async (req, res, next) => {
+  try {
+    const userid = req.user._id;
 
-}
+    const tasks = await Task.find({ user: userid });
+
+    res.status(200).json({
+      success: true,
+      tasks,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const updateTaskStatus=async(req ,res) => {
   try {
