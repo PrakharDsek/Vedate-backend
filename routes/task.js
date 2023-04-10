@@ -5,7 +5,7 @@ import { isAuth } from "../middlewares/auth.js"
 const router=express.Router()
 
 router.post("/new",isAuth, createTask)
-router.post("/allTask",isAuth, getTasks)
+router.post("/allTask/:userId",getTasks)
 router.put("/update/:id",isAuth, updateTaskStatus)
 router.delete("/delete/:id",isAuth, deleteTask)
 

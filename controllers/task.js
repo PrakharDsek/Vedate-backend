@@ -28,7 +28,7 @@ export const createTask = async (req, res) => {
 
 export const getTasks = async (req, res) => {
   try {
-    const userid = req.user._id;
+    const userid = req.params.userId;
 
     const tasks = await Task.find({ user: userid });
 
@@ -39,7 +39,7 @@ export const getTasks = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: error.message,
+      message: "User id provided does not exist", 
     });
   }
 };
